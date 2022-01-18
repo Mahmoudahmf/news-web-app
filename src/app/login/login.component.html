@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" (ngSubmit)="sub(loginForm)">
+  <div *ngIf="error" class="alert alert-danger my-3">{{error}}</div>
+
+  <label>E-mail:</label>
+  <input formControlName="email" type="email" class="form-control mb-2">
+  <div *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched " class="alret border border-danger">
+    <p *ngIf="loginForm.get('email')?.errors?.['required']"> required</p>
+    <p *ngIf="loginForm.get('email')?.errors?.['email']">type must be sss@vvvv.com</p>
+  </div>
+  <label>PassWord:</label>
+  <input formControlName="password" type="password" class="form-control mb-2">
+  <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched "
+    class="alret border border-danger">
+    <p *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</p>
+    <p *ngIf="loginForm.get('password')?.errors?.['pattern']">must contain Uppar case and Symbols</p>
+  </div>
+  <p class="text-black">don't have account? <a routerLink="/register">register</a></p>
+  <button [disabled]=loginForm.invalid class="btn btn-info">login</button>
+
+</form>
